@@ -36,10 +36,13 @@ public class UserService
             XPath xPath = XPathFactory.newInstance().newXPath();
             String expression = "/Patients/Patient[@PhoneNo='" + model.getPhoneNo() + "']/Name";
             String name = xPath.compile(expression).evaluate(xmlDocument);
-            if(name != null)
+            if(name != null && name != "")
             {
+                System.out.println("inside if :" + name);
                 return false;
             }
+            DoctorModel doctor = null;
+            AddRecord(model, doctor);
 
             // append code of adding this record Patientdata registration
         }
@@ -72,7 +75,6 @@ public class UserService
                 System.out.println("inside if :" + name);
                 return false;
             }
-            //name ="dsh"
             PatientModel patient = null;
             AddRecord(patient, model);
             // append code of adding this record Patientdata registration
